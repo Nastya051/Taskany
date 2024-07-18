@@ -74,5 +74,7 @@ dependencies {
     implementation(project(":data"))
 
     //koin
+    implementation("io.insert-koin:koin-core:3.5.0")
     implementation("io.insert-koin:koin-android:3.5.0")
+    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
 }
