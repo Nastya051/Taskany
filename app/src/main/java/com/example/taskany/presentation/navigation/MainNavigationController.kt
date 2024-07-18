@@ -10,7 +10,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.example.taskany.presentation.ui.screens.CalendarScreen
 import com.example.taskany.presentation.ui.screens.ListsScreen
+import com.example.taskany.presentation.ui.screens.SettingsScreen
+import com.example.taskany.presentation.ui.screens.TasksScreen
 
 @Composable
 fun MainNavigationController(navController: NavHostController){
@@ -19,12 +22,24 @@ fun MainNavigationController(navController: NavHostController){
     ){
         NavHost(
             navController = navController,
-            startDestination = Route.ListsScreen.path,
+            startDestination = Route.TasksScreen.path,
             enterTransition = { fadeIn(animationSpec = tween(350)) },
             exitTransition = { fadeOut(animationSpec = tween(350)) },
         ){
             composable(route = Route.ListsScreen.path) {
                 ListsScreen()
+            }
+
+            composable(route = Route.TasksScreen.path) {
+                TasksScreen()
+            }
+
+            composable(route = Route.CalendarScreen.path) {
+                CalendarScreen()
+            }
+
+            composable(route = Route.SettingsScreen.path) {
+                SettingsScreen()
             }
 
 //            composable(route = Route.ViewingPhotoScreen.path + "/{type}",

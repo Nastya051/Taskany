@@ -12,15 +12,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import com.example.taskany.R
+import com.example.taskany.presentation.constants.NavigationStates
+import com.example.taskany.presentation.navigation.LocalNavController
+import com.example.taskany.presentation.navigation.Route
 
 @Composable
-fun CommonBottomBar() {
-    var _state by remember { mutableIntStateOf(3) }
+fun CommonBottomBar(state: Int) {
+    val navController = LocalNavController.current!!
+    var _state by remember { mutableIntStateOf(state) }
 
     NavigationBar {
         NavigationBarItem(
-            selected = _state == 1,
-            onClick = { _state = 1 },
+            selected = _state == NavigationStates.Somthng.ordinal,
+            onClick = { _state = NavigationStates.Somthng.ordinal },
             icon = {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_edit_20),
@@ -33,12 +37,15 @@ fun CommonBottomBar() {
             alwaysShowLabel = false
         )
         NavigationBarItem(
-            selected = _state == 2,
-            onClick = { _state = 2 },
+            selected = _state == NavigationStates.Lists.ordinal,
+            onClick = {
+                _state = NavigationStates.Lists.ordinal
+                navController.navigate(Route.ListsScreen.path)
+            },
             icon = {
                 Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_bell_24),
-                    contentDescription = "Calendar"
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_list_24),
+                    contentDescription = "Notes"
                 )
             },
             label = {
@@ -47,8 +54,11 @@ fun CommonBottomBar() {
             alwaysShowLabel = false
         )
         NavigationBarItem(
-            selected = _state == 3,
-            onClick = { _state = 3 },
+            selected = _state == NavigationStates.Tasks.ordinal,
+            onClick = {
+                _state = NavigationStates.Tasks.ordinal
+                navController.navigate(Route.TasksScreen.path)
+            },
             icon = {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_home_24),
@@ -61,8 +71,11 @@ fun CommonBottomBar() {
             alwaysShowLabel = false
         )
         NavigationBarItem(
-            selected = _state == 4,
-            onClick = { _state = 4 },
+            selected = _state == NavigationStates.Calendar.ordinal,
+            onClick = {
+                _state = NavigationStates.Calendar.ordinal
+                navController.navigate(Route.CalendarScreen.path)
+            },
             icon = {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_calendar_24),
@@ -75,12 +88,15 @@ fun CommonBottomBar() {
             alwaysShowLabel = false
         )
         NavigationBarItem(
-            selected = _state == 5,
-            onClick = { _state = 5 },
+            selected = _state == NavigationStates.Settings.ordinal,
+            onClick = {
+                _state = NavigationStates.Settings.ordinal
+                navController.navigate(Route.SettingsScreen.path)
+            },
             icon = {
                 Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_alarm_24),
-                    contentDescription = "Calendar"
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_settings_24),
+                    contentDescription = "Settings"
                 )
             },
             label = {

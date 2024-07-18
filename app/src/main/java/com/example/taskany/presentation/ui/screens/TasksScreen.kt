@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.taskany.presentation.constants.NavigationStates
 import com.example.taskany.presentation.ui.custom_views.CommonBottomBar
-import com.example.taskany.presentation.ui.custom_views.NoteCard
+import com.example.taskany.presentation.ui.custom_views.TaskCard
 
 @Composable
-fun ListsScreen() {
+fun TasksScreen(){
     Scaffold(
         topBar = {
             Row(
@@ -28,27 +28,17 @@ fun ListsScreen() {
             }
         },
         bottomBar = {
-                    CommonBottomBar(NavigationStates.Lists.ordinal)
+            CommonBottomBar(NavigationStates.Tasks.ordinal)
         },
         containerColor = MaterialTheme.colorScheme.secondary
-    ) {
+    ){
         LazyColumn(
             modifier = Modifier
                 .padding(it)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            for (i in 0..5 step 2) {
-                item {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        NoteCard(modifier = Modifier.weight(0.4f))
-                        NoteCard(modifier = Modifier.weight(0.4f))
-                    }
-                }
+                .padding(horizontal = 16.dp, vertical = 10.dp)
+        ){
+            items(10){
+                TaskCard()
             }
         }
     }
